@@ -31,7 +31,7 @@ export default function AboutPage() {
                 Privacy-First Approach
               </h2>
               <p className="text-gray-700">
-                We respect privacy and believe in high-level discovery. That's why we never show
+                We respect privacy and believe in high-level discovery. That is why we never show
                 exact street addresses, building numbers, or precise locations. Instead, we provide
                 city or area information to help you discover businesses while maintaining a level
                 of privacy for the establishments and their patrons.
