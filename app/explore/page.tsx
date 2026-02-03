@@ -4,9 +4,10 @@ import { createClient } from '@/lib/supabase/client'
 import { Business } from '@/lib/types'
 import BusinessGrid from '@/components/business/BusinessGrid'
 import { Sparkles } from 'lucide-react'
-import { useEffect, useState } from 'react'
+import { useEffect, useState, Suspense } from 'react'
+import { useSearchParams } from 'next/navigation'
 
-async function getBusinesses(type?: string): Promise<Business[]> {
+async function getBusinesses(type: string | null): Promise<Business[]> {
   const supabase = createClient()
 
   let query = supabase
@@ -28,21 +29,18 @@ async function getBusinesses(type?: string): Promise<Business[]> {
   return data as Business[]
 }
 
-export default function ExplorePage({
-  searchParams,
-}: {
-  searchParams: Promise<{ type?: string }>
-}) {
+function ExplorePageContent() {
+  const searchParams = useSearchParams()
+  const type = searchParams.get('type')
   const [businesses, setBusinesses] = useState<Business[]>([])
-  const [type, setType] = useState<string | undefined>(undefined)
 
   useEffect(() => {
-    searchParams.then(async (params) => {
-      setType(params.type)
-      const data = await getBusinesses(params.type)
+    async function fetchData() {
+      const data = await getBusinesses(type)
       setBusinesses(data)
-    })
-  }, [searchParams])
+    }
+    fetchData()
+  }, [type])
 
   const title = type === 'buy' 
     ? 'Properties for Sale' 
@@ -95,5 +93,13 @@ export default function ExplorePage({
         </div>
       </section>
     </div>
+  )
+}
+
+export default function ExplorePage() {
+  return (
+    <Suspense fallback={<div className="min-h-screen bg-gray-50" />}>
+      <ExplorePageContent />
+    </Suspense>
   )
 }
