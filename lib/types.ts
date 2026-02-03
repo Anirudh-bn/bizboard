@@ -17,4 +17,15 @@ export interface Business {
   is_featured: boolean
   created_at: string
   updated_at: string
+  listing_id?: string
+  micro_area?: string
+  built_up_area_sqft?: number
+  seating_capacity?: number
+  floor_level?: string
+  building_type?: string
+  monthly_rent_range?: string
+  deposit_amount?: string
+  lease_balance_years?: number
+  is_deposit_transferable?: boolean
+  listing_type?: 'lease' | 'buy'
 }
