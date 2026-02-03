@@ -4,8 +4,8 @@ import Header from '@/components/layout/Header'
 import Footer from '@/components/layout/Footer'
 
 export const metadata: Metadata = {
-  title: 'BizBoard - Discover Curated Businesses',
-  description: 'Browse and discover curated businesses in your area. Find cafes, coworking spaces, fitness studios, and more.',
+  title: 'BizBoard | Buy, Sell & Lease Businesses',
+  description: 'Hyderabad\'s premier marketplace for premium commercial real estate and business listings.',
 }
 
 export default function RootLayout({
